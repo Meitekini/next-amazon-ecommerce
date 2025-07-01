@@ -31,8 +31,8 @@ export default function TinyHeader() {
   };
 
   return (
-    <header className="w-full bg-black shadow-sm border-b">
-        <div className="px-2">
+    <header className="w-full bg-black text-white shadow-sm border-b">
+       
       <div className="max-w-7xl mx-auto py-3 flex items-center justify-between gap-4">
         {/* Logo */}
      
@@ -118,7 +118,7 @@ export default function TinyHeader() {
           </div>
         </div>
       </div>
-        </div>
+      
     </header>
   );
 }
