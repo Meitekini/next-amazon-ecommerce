@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
- title: {
-        template: `%s | ${APP_NAME}`,
-        default: `${APP_NAME}. ${APP_SLOGAN}`,
-      },
-      description: APP_DESCRIPTION,
+  title: {
+    template: `%s | ${APP_NAME}`,
+    default: `${APP_NAME}. ${APP_SLOGAN}`,
+  },
+  description: APP_DESCRIPTION,
 };
 
-export default function RootLayout({
+export default function AppLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
