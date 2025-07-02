@@ -38,6 +38,34 @@
 //     );
 //   return NextResponse.json<IProduct[]>(products);
 // };
+// the above code generates below error. The code below solves the bproblem
+//  CastError: Cast to ObjectId failed for value "" (type string) at path "_id" for model "Product"
+//     at Array.map (<anonymous>)
+//     at async GET (app\api\products\browsing-history\route.ts:29:19)
+//   27 |
+//   28 |   await connectToDatabase();
+// > 29 |   const products = await Product.find(filter);
+//      |                   ^
+//   30 |
+//   31 |   if (listType === "history")
+//   32 |     return NextResponse.json( {
+//   stringValue: '""',
+//   messageFormat: undefined,
+//   kind: 'ObjectId',
+//   value: '',
+//   path: '_id',
+//   reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+//       at Array.map (<anonymous>)
+//       at async GET (app\api\products\browsing-history\route.ts:29:19)
+//     27 |
+//     28 |   await connectToDatabase();
+//   > 29 |   const products = await Product.find(filter);
+//        |                   ^
+//     30 |
+//     31 |   if (listType === "history")
+//     32 |     return NextResponse.json(,
+//   valueType: 'string'
+// }
 
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
