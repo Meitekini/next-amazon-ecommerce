@@ -9,7 +9,6 @@ function Menu() {
     <div className="flex justify-end">
       <nav className="flex gap-3 w-full">
         <UserButton />
-
         <CartButton />
       </nav>
     </div>

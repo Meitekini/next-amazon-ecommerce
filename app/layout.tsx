@@ -34,6 +34,7 @@ export default function AppLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+
         {/* <ClientProviders>{children}</ClientProviders> */}
       </body>
     </html>
