@@ -1,25 +1,19 @@
-import { ShoppingCartIcon, UserIcon } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import { ShoppingCartIcon, UserIcon } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+import CartButton from "./cart-button";
+import UserButton from "./user-button";
 
 function Menu() {
   return (
-     <div className='flex justify-end'>
-         <nav className='flex gap-3 w-full'>
-           <Link href='/signin' className='flex items-center header-button'>
-             
-             <span className='font-bold'>Hello, Sign in</span>
-           </Link>
+    <div className="flex justify-end">
+      <nav className="flex gap-3 w-full">
+        <UserButton />
 
-           <Link href='/cart' className='header-button'>
-           <div className='flex items-end'>
-             <ShoppingCartIcon className='h-8 w-8' />            
-            Cart
-           </div>
-           </Link>
-         </nav>
-       </div>
-  )
+        <CartButton />
+      </nav>
+    </div>
+  );
 }
 
-export default Menu
+export default Menu;
