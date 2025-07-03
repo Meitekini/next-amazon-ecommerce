@@ -130,6 +130,7 @@ const CheckoutForm = () => {
       taxPrice,
       totalPrice,
     });
+
     if (!res.success) {
       toast.error(res.message);
     } else {

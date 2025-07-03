@@ -178,3 +178,7 @@ export const calcDeliveryDateAndPrice = async ({
     taxPrice,
   };
 };
+
+export function formatId(id: string) {
+  return `..${id.substring(id.length - 6)}`;
+}
