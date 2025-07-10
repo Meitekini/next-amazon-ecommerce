@@ -34,8 +34,9 @@ export default function AddToCart({
         try {
           addItem(item, 1);
           toast("Item Added to Cart");
-        } catch (error: any) {
-          toast(`$error.message`);
+        } catch (error: unknown) {
+          if (error instanceof Error) toast(error.message);
+          else toast("Something went wrong");
         }
       }}
     >
@@ -66,12 +67,9 @@ export default function AddToCart({
           try {
             const itemId = await addItem(item, quantity);
             router.push(`/cart/${itemId}`);
-          } catch (error: any) {
-            toast.error(`$error.message`);
-            //    toast({
-            //      variant: 'destructive',
-            //      description: error.message,
-            //    })
+          } catch (error: unknown) {
+            if (error instanceof Error) toast(error.message);
+            else toast("Something went wrong");
           }
         }}
       >
@@ -83,8 +81,9 @@ export default function AddToCart({
           try {
             addItem(item, quantity);
             router.push(`/checkout`);
-          } catch (error: any) {
-            toast.error(`$error.message`);
+          } catch (error: unknown) {
+            if (error instanceof Error) toast(error.message);
+            else toast("Something went wrong");
           }
         }}
         className="w-full rounded-full "

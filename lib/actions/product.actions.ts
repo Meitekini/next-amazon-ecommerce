@@ -6,7 +6,7 @@ import { PAGE_SIZE } from "../constants";
 
 export async function getAllCategories() {
   await connectToDatabase();
-  const categories: any = await Product.find({ isPublished: true }).distinct(
+  const categories = await Product.find({ isPublished: true }).distinct(
     "category"
   );
   return categories;

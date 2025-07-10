@@ -41,27 +41,54 @@ export function formatNumber(number: number) {
   return NUMBER_FORMATTER.format(number);
 }
 
-export const formatError = (error: any): string => {
-  if (error.name === "ZodError") {
-    const fieldErrors = Object.keys(error.errors).map((field) => {
-      const errorMessage = error.errors[field].message;
-      return `${error.errors[field].path}: ${errorMessage}`; // field: errorMessage
+export const formatError = (error: unknown): string => {
+  if (
+    typeof error === "object" &&
+    error !== null &&
+    "name" in error &&
+    (error as { name: string }).name === "ZodError"
+  ) {
+    const err = error as unknown as {
+      errors: Record<string, { message: string; path: string }>;
+    };
+    const fieldErrors = Object.keys(err.errors).map((field) => {
+      const errorMessage = err.errors[field].message;
+      return `${err.errors[field].path}: ${errorMessage}`; // field: errorMessage
     });
     return fieldErrors.join(". ");
-  } else if (error.name === "ValidationError") {
-    const fieldErrors = Object.keys(error.errors).map((field) => {
-      const errorMessage = error.errors[field].message;
+  } else if (
+    typeof error === "object" &&
+    error !== null &&
+    "name" in error &&
+    (error as { name: string }).name === "ValidationError"
+  ) {
+    const err = error as unknown as {
+      errors: Record<string, { message: string }>;
+    };
+    const fieldErrors = Object.keys(err.errors).map((field) => {
+      const errorMessage = err.errors[field].message;
       return errorMessage;
     });
     return fieldErrors.join(". ");
-  } else if (error.code === 11000) {
-    const duplicateField = Object.keys(error.keyValue)[0];
+  } else if (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    (error as { code: number }).code === 11000
+  ) {
+    const err = error as unknown as { keyValue: Record<string, string> };
+    const duplicateField = Object.keys(err.keyValue)[0];
     return `${duplicateField} already exists`;
+  } else if (
+    typeof error === "object" &&
+    error !== null &&
+    "message" in error
+  ) {
+    return typeof (error as { message: unknown }).message === "string"
+      ? (error as { message: string }).message
+      : JSON.stringify((error as { message: unknown }).message);
   } else {
-    // return 'Something went wrong. please try again'
-    return typeof error.message === "string"
-      ? error.message
-      : JSON.stringify(error.message);
+    return "Something went wrong. please try again";
   }
 };
 
@@ -176,6 +203,7 @@ export const calcDeliveryDateAndPrice = async ({
     itemsPrice,
     shippingPrice,
     taxPrice,
+    totalPrice,
   };
 };
 

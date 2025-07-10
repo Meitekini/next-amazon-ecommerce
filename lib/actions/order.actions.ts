@@ -1,10 +1,7 @@
 "use server";
-import { Cart, OrderItem, ShippingAddress } from "@/types";
-import { calcDeliveryDateAndPrice, formatError, round2 } from "../utils";
-import {
-  AVAILABLE_DELIVERY_DATES,
-  FREE_SHIPPING_MIN_PRICE,
-} from "../constants";
+import { Cart } from "@/types";
+import { calcDeliveryDateAndPrice, formatError } from "../utils";
+
 import { connectToDatabase } from "../db";
 import { OrderInputSchema } from "../validators";
 import { auth } from "@/auth";

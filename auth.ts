@@ -1,10 +1,10 @@
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
+// import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import bcrypt from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import NextAuth, { type DefaultSession } from "next-auth";
 import authConfig from "./auth.config";
-import client from "./lib/db/client";
+// import client from "./lib/db/client";
 import { connectToDatabase } from "./lib/db";
 import User from "./lib/db/models/user.model";
 

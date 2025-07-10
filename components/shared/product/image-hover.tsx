@@ -1,6 +1,7 @@
 "use client";
+// This component is used to display an image that changes on hover with a delay.
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { useState } from "react";
 
 const ImageHover = ({
   src,
@@ -12,15 +13,23 @@ const ImageHover = ({
   alt: string;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  let hoverTimeout: any;
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
+
   const handleMouseEnter = () => {
-    hoverTimeout = setTimeout(() => setIsHovered(true), 1000); // 1 second delay
+    hoverTimeout.current = setTimeout(() => setIsHovered(true), 1000); // 1s delay
   };
 
   const handleMouseLeave = () => {
-    clearTimeout(hoverTimeout);
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
     setIsHovered(false);
   };
+
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    };
+  }, []);
 
   return (
     <div

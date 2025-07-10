@@ -74,7 +74,7 @@ import { Types } from "mongoose";
 import Product from "@/lib/db/models/product.model";
 
 export const GET = async (request: NextRequest) => {
-  const listType = request.nextUrl.searchParams.get("type") || "history";
+  // const listType = request.nextUrl.searchParams.get("type") || "history";
   const productIdsParam = request.nextUrl.searchParams.get("ids");
   const categoriesParam = request.nextUrl.searchParams.get("categories");
 
